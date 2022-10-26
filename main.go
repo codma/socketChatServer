@@ -12,7 +12,6 @@ import (
 
 // server
 func main() {
-	//client 접속 대기
 	port := ":8080"
 	ln, err := net.Listen("tcp", port)
 	if err != nil {
@@ -22,35 +21,22 @@ func main() {
 
 	defer ln.Close()
 
-	//client와 연결될 경우 제네릭 변수 리턴
 	for {
 		conn, err := ln.Accept()
 		if err != nil {
 			log.Println(err)
 			return
 		}
-		go handleConnection(conn)
+		ch := make(chan string)
+		go handleReciveMsg(conn, ch)
+		handleSendMsg(conn)
+
+		defer conn.Close()
 	}
 }
 
-func handleConnection(conn net.Conn) {
-
+func handleSendMsg(conn net.Conn) {
 	for {
-		netData, err := bufio.NewReader(conn).ReadString('\n')
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-
-		if strings.TrimSpace(string(netData)) == "STOP" {
-			fmt.Println("Exiting TCP server!")
-			return
-		}
-
-		//client로부터 받은 데이터 출력
-		myTime := MyTime()
-		fmt.Print("("+myTime+")", string(netData))
-
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Print(">> ")
 		text, err := reader.ReadString('\n')
@@ -59,7 +45,7 @@ func handleConnection(conn net.Conn) {
 			return
 		}
 
-		myTime = MyTime()
+		myTime := MyTime()
 		message := "(" + myTime + ")Boomba: " + text
 		_, err = conn.Write([]byte(message))
 		if err != nil {
@@ -67,6 +53,34 @@ func handleConnection(conn net.Conn) {
 			return
 		}
 	}
+}
+
+func handleReciveMsg(conn net.Conn, ch chan string) {
+	for {
+		select {
+		case message := <-ch:
+			myTime := MyTime()
+			if strings.TrimSpace(string(message)) == "STOP" {
+				fmt.Println("Exiting TCP server!")
+				conn.Close()
+				return
+			}
+			fmt.Print("("+myTime+")", string(message))
+
+		default:
+			go readMsg(conn, ch)
+			time.Sleep(1000 * time.Millisecond)
+		}
+	}
+}
+
+func readMsg(conn net.Conn, ch chan string) {
+	message, err := bufio.NewReader(conn).ReadString('\n')
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	ch <- message
 }
 
 func MyTime() string {
