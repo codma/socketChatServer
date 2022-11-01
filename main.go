@@ -18,7 +18,7 @@ func main() {
 		log.Println(err)
 		return
 	}
-	log.Panicln("Start!!!!!!!!")
+	log.Panicln("Start!!!!!")
 
 	defer ln.Close()
 
