@@ -31,6 +31,7 @@ jobs:
         cp -TR . ../build 
         tar -cvf deploy.tar ../build/
         pwd
+        ls -al
     
 
     - name: Copy via ssh
