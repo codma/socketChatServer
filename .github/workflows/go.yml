@@ -21,8 +21,6 @@ jobs:
 
     - name: Build
       run: |
-        export GOOS=linux
-        export GOARCH=amd64
         go build
         pwd
         ls -al
