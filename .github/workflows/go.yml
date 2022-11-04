@@ -1,0 +1,40 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: build
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.19
+
+    - name: Build
+      run: |
+        export GOOS=linux
+        export GOARCH=amd64
+        go build
+                
+    - name: Send file to FileDown
+      uses: appleboy/scp-action@v0.1.3
+	    with: 
+	      host: ${{ secrets.FILEDOWN }}
+	      # Remote dir path
+	      remote: 
+	      user: ${{ secrets.LINUX_USERNAME }}
+	      key: ${{ secrets.FILEDOWN_KEY }}
+        target: "/home/ubuntu/workspace/sixshop3-image-download/testjinjoo"
+        source: "*.exe"
+        
+        
+
