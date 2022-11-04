@@ -55,6 +55,11 @@ jobs:
           cd /home/ubuntu/destination/folder/build
           cp main /home/ubuntu/workspace/sixshop3-image-download/github_action
           rm -rf /home/ubuntu/destination
+          PID=$(pgrep main)
+          echo $PID
           cd /home/ubuntu/workspace/sixshop3-image-download/
           mkdir /home/ubuntu/workspace/backup/$(date +"%Y%m%d%H")
           mv jinjoo.text /home/ubuntu/workspace/backup/$(date +"%Y%m%d%H")
+          #cd /home/ubuntu/workspace/sixshop3-image-download/github_action
+          #cp main /home/ubuntu/workspace/sixshop3-image-download
+          #sudo nohup /home/ubuntu/workspace/sixshop3-image-download/main </dev/null >/dev/null 2>&1 &
