@@ -30,5 +30,19 @@ jobs:
         mkdir ../build
         cp -TR . ../build 
         tar -cvf deploy.tar ../build/
-        ssh
+    
 
+    - name: Copy via ssh
+      # You may pin to the exact commit or the version.
+      # uses: garygrossgarten/github-action-scp@dba89d858413133b6e35da91a3c989cc8cde3ad4
+      uses: garygrossgarten/github-action-scp@v0.7.3
+      with:
+        # Path to the local folder you want to copy.
+        local: deploy.tar
+        # Path on the remote server to copy to.
+        remote: /C:/deploy/developers/jinjootest
+        host: ${{ secrets.DEVELOPERS }}
+        username: ${{ secrets.USERNAME }}
+        # File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
+        privateKey: ${{ secrets.DEVELOPERS_KEY }}
+        
