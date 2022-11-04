@@ -43,6 +43,4 @@ jobs:
         remote: /C:/deploy/developers/jinjootest
         host: ${{ secrets.DEVELOPERS }}
         username: ${{ secrets.USERNAME }}
-        # File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
-        privateKey: ${{ secrets.DEVELOPERS_KEY }}
-        
+        password: ${{ secrets.DEVELOPERS_PASSWORD }}
