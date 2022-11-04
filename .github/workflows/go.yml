@@ -41,7 +41,8 @@ jobs:
         host: ${{ secrets.FILEDOWN }}
         username: ${{ secrets.LINUX_USERNAME }}
         key: ${{ secrets.FILEDOWN_KEY }}
-        target: "source"
-        source: "build/libs/*.exe"
+        port: 22
+        target: "/home/ubuntu/workspace"
+        source: "/home/runner/work/socketChatServer/socketChatServer/main.exe"
         debug: true
       
