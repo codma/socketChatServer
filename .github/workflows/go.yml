@@ -24,6 +24,8 @@ jobs:
         export GOOS=linux
         export GOARCH=amd64
         go build
+        pwd
+        la -al
                 
     - name: Send file to FileDown
       uses: appleboy/scp-action@v0.1.3
@@ -33,5 +35,5 @@ jobs:
         key: ${{ secrets.FILEDOWN_KEY }}
         target: "source"
         source: "build/libs/*.exe"
-        
+        debug: true
       
