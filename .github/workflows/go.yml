@@ -30,14 +30,6 @@ jobs:
         mkdir ../build
         cp -TR . ../build 
         tar -cvf deploy.tar ../build/
-
-    - name: File deployments
-      uses: 49nord/action-files@v1
-      with:
-        # The local path that should be uploaded. Should end with a slash.
-        src: ../build/
-        # The remote location to sync to, e.g. `user@host:/path/to/dest/`. Should end with a slash.
-        dest: ${{ secrets.USERNAME }}@${{ secrets.DEVELOPERS }}:/C:/deploy/developers/jinjootest
-        # SSH private key to add before attempting any transfer.
-        ssh_key: ${{ secrets.DEVELOPERS_KEY }}
+        hostname -I
+        whoami
 
