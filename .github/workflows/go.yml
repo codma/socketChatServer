@@ -32,17 +32,6 @@ jobs:
         cp -TR . ../build
         tar -cvf deploy.tar ../build/
     
-    - name: executing remote ssh commands using key
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.DEVELOPERS }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.DEVELOPERS_KEY }}
-        port: 22
-        script: |
-          pwd
-          ls -al
-    
     
     - name: Send file to Developers
       uses: appleboy/scp-action@v0.1.3
