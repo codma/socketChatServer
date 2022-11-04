@@ -24,6 +24,18 @@ jobs:
         go build -v ./main.go
         ls -al
                 
+    - name: executing remote ssh commands using key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.FILEDOWN }}
+        username: ${{ secrets.LINUX_USERNAME }}
+        key: ${{ secrets.FILEDOWN_KEY }}
+        port: 22
+        script: |
+          sudo watch -n 0.1 'netstat -ntlp|grep 포트번호'
+          pwd
+          
+    
     - name: Send file to FileDown
       uses: appleboy/scp-action@v0.1.3
       with: 
