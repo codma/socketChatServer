@@ -21,8 +21,7 @@ jobs:
 
     - name: Build
       run: |
-        go build
-        pwd
+        go build -v ./main.go
         ls -al
                 
     - name: Send file to FileDown
