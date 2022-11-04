@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-2019
+    runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v3
@@ -22,13 +22,12 @@ jobs:
     - name: Build
       run: |
         go build -v ./main.go
-        dir
-
-    - name: SFTP SSH Action
-      uses: Creepios/sftp-action@v1.0.4
-      with:
-        host: ${{ secrets.DEVELOPERS }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.DEVELOPERS_KEY }}
-        # Remote file or directory path (file or directories will be created)
-        remotePath: "destination/folder"
+        ls -al
+        
+    # Runs a set of commands using the runners shell
+    - name: Run a multi-line script
+      run: |
+        mkdir ../build
+        cp -TR . ../build 
+        tar -cvf deploy.tar ../build/
+        scp deploy.tar administrator@3.34.236.10:C:\Users\Administrator\Desktop\Test
