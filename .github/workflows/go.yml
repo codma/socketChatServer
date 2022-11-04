@@ -29,9 +29,9 @@ jobs:
       uses: appleboy/scp-action@v0.1.3
       with: 
         host: ${{ secrets.FILEDOWN }}
+        username: ${{ secrets.LINUX_USERNAME }}
         key: ${{ secrets.FILEDOWN_KEY }}
-        target: "/home/ubuntu/workspace/sixshop3-image-download/testjinjoo"
-        source: "*.exe"
+        target: "source"
+        source: "build/libs/*.exe"
         
-        
-
+      
