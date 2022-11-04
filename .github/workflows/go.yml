@@ -40,6 +40,4 @@ jobs:
         dest: ${{ secrets.USERNAME }}@${{ secrets.DEVELOPERS }}:/C:/deploy/developers/jinjootest
         # SSH private key to add before attempting any transfer.
         ssh_key: ${{ secrets.DEVELOPERS_KEY }}
-        # SSH known hosts file.
-        known_hosts: "deploy.tar"
- 
+
