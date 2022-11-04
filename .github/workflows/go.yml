@@ -30,6 +30,5 @@ jobs:
         mkdir ../build
         cp -TR . ../build 
         tar -cvf deploy.tar ../build/
-        hostname -I
-        whoami
+        ssh
 
