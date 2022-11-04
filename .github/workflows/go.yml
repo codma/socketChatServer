@@ -23,17 +23,6 @@ jobs:
       run: |
         go build -v ./main.go
         ls -al
-                
-    - name: executing remote ssh commands using key
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.FILEDOWN }}
-        username: ${{ secrets.LINUX_USERNAME }}
-        key: ${{ secrets.FILEDOWN_KEY }}
-        port: 22
-        script: |
-          pwd
-          ls -al
     
     - name: Send file to FileDown
       uses: appleboy/scp-action@v0.1.3
@@ -42,7 +31,7 @@ jobs:
         username: ${{ secrets.LINUX_USERNAME }}
         key: ${{ secrets.FILEDOWN_KEY }}
         port: 22
-        target: "/home/ubuntu/workspace"
-        source: "/home/runner/work/socketChatServer/socketChatServer/main.exe"
+        target: "/home/runner/work/socketChatServer/socketChatServer/"
+        source: "main.exe"
         debug: true
       
