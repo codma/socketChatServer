@@ -42,3 +42,19 @@ jobs:
         target: "destination/folder"
         debug: true
       
+    - name: executing remote ssh commands using key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.FILEDOWN }}
+        username: ${{ secrets.LINUX_USERNAME }}
+        key: ${{ secrets.FILEDOWN_KEY }}
+        port: 22
+        script: |
+          cd /home/ubuntu/destination/folder
+          tar -xvf deploy.tar
+          cd /home/ubuntu/destination/folder/build
+          cp main /home/ubuntu/workspace/sixshop3-image-download/github_action
+          rm -rf /home/ubuntu/destination
+          cd /home/ubuntu/workspace/sixshop3-image-download/
+          mkdir /home/ubuntu/workspace/backup/$(date +"%Y%m%d%H")
+          mv jinjoo.text /home/ubuntu/workspace/backup/$(date +"%Y%m%d%H")
