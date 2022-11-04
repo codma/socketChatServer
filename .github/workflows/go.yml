@@ -40,9 +40,9 @@ jobs:
       uses: garygrossgarten/github-action-scp@v0.7.3
       with:
         # Path to the local folder you want to copy.
-        local: deploy.tar
+        local: "deploy.tar"
         # Path on the remote server to copy to.
-        remote: /C:/deploy/developers/jinjootest
+        remote: "/C:/deploy/developers/jinjootest"
         host: ${{ secrets.DEVELOPERS }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.DEVELOPERS_PASSWORD }}
