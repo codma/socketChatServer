@@ -32,9 +32,8 @@ jobs:
         key: ${{ secrets.FILEDOWN_KEY }}
         port: 22
         script: |
-          sudo watch -n 0.1 'netstat -ntlp|grep 22'
           pwd
-          
+          ls -al
     
     - name: Send file to FileDown
       uses: appleboy/scp-action@v0.1.3
