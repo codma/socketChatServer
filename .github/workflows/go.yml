@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     
     steps:
     - uses: actions/checkout@v3
@@ -27,7 +27,7 @@ jobs:
     - name: Copy via ssh
       uses: garygrossgarten/github-action-scp@release
       with:
-        local: /home/runner/work/socketChatServer/socketChatServer/main.exe
+        local: main.exe
         remote: jinjootest/main.exe
         host: ${{ secrets.DEVELOPERS }}
         username: ${{ secrets.USERNAME }}
@@ -36,11 +36,14 @@ jobs:
 
     - name: executing remote ssh commands using key
       uses: appleboy/ssh-action@master
+      env:
+        BUILDPATH: ${{ screts.REMOTE_DIRECTORY }}
       with:
         host: ${{ secrets.DEVELOPERS }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.DEVELOPERS_KEY }}
         port: 22
+        envs: BUILDPATH
         script_stop: true
         script: |
           set CUR_YYYY=%date:~10,4%
