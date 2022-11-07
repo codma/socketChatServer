@@ -23,16 +23,11 @@ jobs:
       run: |
         go build -v ./main.go
         pwd
-        
-    - name: Run a multi-line script
-      run: |
-        mkdir ../build
-        cp main.* ../build 
     
     - name: Copy via ssh
       uses: garygrossgarten/github-action-scp@release
       with:
-        local: /home/runner/work/socketChatServer/socketChatServer/build
+        local: /home/runner/work/socketChatServer/socketChatServer
         remote: jinjootest
         host: ${{ secrets.DEVELOPERS }}
         username: ${{ secrets.USERNAME }}
