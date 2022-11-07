@@ -44,3 +44,4 @@ jobs:
         script_stop: true
         script: |
           dir
+          mkdir testFromgithubaction
