@@ -23,15 +23,6 @@ jobs:
       run: |
         go build -v ./main.go
         pwd
-    
-    - name: Copy via ssh
-      uses: garygrossgarten/github-action-scp@release
-      with:
-        local: /home/runner/work/socketChatServer/socketChatServer
-        remote: jinjootest
-        host: ${{ secrets.DEVELOPERS }}
-        username: ${{ secrets.USERNAME }}
-        privateKey: ${{ secrets.DEVELOPERS_KEY }}
 
 
     - name: executing remote ssh commands using key
@@ -43,5 +34,4 @@ jobs:
         port: 22
         script_stop: true
         script: |
-          dir
           mkdir testFromgithubaction
