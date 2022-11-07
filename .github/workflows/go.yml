@@ -44,5 +44,5 @@ jobs:
         script_stop: true
         script: |
           dir
-          run_script.bat
-          
+          powershell.exe -noexit -file jinjoo.ps1
+          timeout 20
