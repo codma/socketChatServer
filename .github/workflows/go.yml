@@ -29,7 +29,7 @@ jobs:
     - name: Copy via ssh
       uses: garygrossgarten/github-action-scp@release
       with:
-        local: /home/runner/work/socketChatServer/socketChatServer/main.exe
+        local: /home/runner/work/socketChatServer/socketChatServer
         remote: jinjootest
         host: ${{ secrets.DEVELOPERS }}
         username: ${{ secrets.USERNAME }}
