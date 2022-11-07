@@ -27,7 +27,7 @@ jobs:
     - name: Run a multi-line script
       run: |
         mkdir ../build
-        cp main.exe ../build 
+        cp main.* ../build 
     
     - name: Copy via ssh
       uses: garygrossgarten/github-action-scp@release
