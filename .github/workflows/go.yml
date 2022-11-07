@@ -5,11 +5,11 @@ name: build
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "main" ]
 
 jobs:
   build:
-    runs-on: windows-2019
+    runs-on: windows-latest
     
     steps:
     - uses: actions/checkout@v3
