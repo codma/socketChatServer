@@ -22,9 +22,12 @@ jobs:
     - name: Build
       run: |
         go build -v ./main.go
+        pwd
+        
+    - name: Run a multi-line script
+      run: |
         mkdir ../build
         cp main.exe ../build 
-        pwd
     
     - name: Copy via ssh
       uses: garygrossgarten/github-action-scp@release
