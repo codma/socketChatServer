@@ -37,7 +37,7 @@ jobs:
     - name: executing remote ssh commands using key
       uses: appleboy/ssh-action@master
       env:
-        BUILDPATH: ${{ screts.REMOTE_DIRECTORY }}
+        BUILDPATH: ${{ secrets.REMOTE_DIRECTORY }}
       with:
         host: ${{ secrets.DEVELOPERS }}
         username: ${{ secrets.USERNAME }}
